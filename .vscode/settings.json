@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "__bit_reference": "cpp",
+        "complex": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "filesystem": "cpp",
+        "iosfwd": "cpp"
+    }
+}

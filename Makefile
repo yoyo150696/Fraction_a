@@ -1,5 +1,3 @@
-#!make -f
-
 CXX=clang++-14
 CXXVERSION=c++2a
 SOURCE_PATH=sources
