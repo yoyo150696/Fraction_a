@@ -1,78 +1,78 @@
+#pragma once
 #include <iostream>
 #include <sstream>
-
+#include <algorithm>
 
 namespace ariel
 {
     class Fraction {
-        private:
-        int numerator;
-        int denominator;
 
         public:
-        // Constructors
-        Fraction();
-        Fraction(int n);
-        Fraction(int n, int d);
-        Fraction(float f);
+            int numerator;
+            int denominator;
+            void reduce();
+            Fraction reduce(int rnumerator,int rdenominator);
+            // Constructors
+            Fraction();
+            Fraction(const Fraction& f);
+            Fraction(int n, int d);
+            Fraction(float fnum);
+            ~Fraction();
+            Fraction(Fraction&& other) noexcept;
+            Fraction& operator=(Fraction&& other) noexcept;
 
-        // Operator overloading
-        Fraction operator+(const Fraction& other) const;
-        Fraction operator+(float f) const;
-        friend Fraction operator+(float f, const Fraction& frac);
-        Fraction operator-(const Fraction& other) const;
-        Fraction operator-(float f) const;
-        friend Fraction operator-(float f, const Fraction& frac);
-        Fraction operator*(const Fraction& other) const;
-        Fraction operator*(float f) const;
-        friend Fraction operator*(float f, const Fraction& frac);
-        Fraction operator/(const Fraction& other) const;
-        Fraction operator/(float f) const;
-        friend Fraction operator/(float f, const Fraction& frac);
-        bool operator==(const Fraction& other) const;
-        bool operator==(float f) const;
-        friend bool operator==(float f, const Fraction& frac);
-        bool operator!=(const Fraction& other) const;
-        bool operator!=(float f) const;
-        friend bool operator!=(float f, const Fraction& frac);
-        bool operator>(const Fraction& other) const;
-        bool operator>(float f) const;
-        friend bool operator>(float f, const Fraction& frac);
-        bool operator<(const Fraction& other) const;
-        bool operator<(float f) const;
-        friend bool operator<(float f, const Fraction& frac);
-        bool operator>=(const Fraction& other) const;
-        bool operator>=(float f) const;
-        friend bool operator>=(float f, const Fraction& frac);
-        bool operator<=(const Fraction& other) const;
-        bool operator<=(float f) const;
-        friend bool operator<=(float f, const Fraction& frac);
-        Fraction operator++(); // Prefix ++
-        Fraction operator++(int); // Postfix ++
-        Fraction operator--(); // Prefix --
-        Fraction operator--(int); // Postfix --
-        friend std::ostream& operator<<(std::ostream& os, const Fraction& frac);
-        friend std::ostream& operator<<(std::ostream& os, bool b);
+            // Operator overloading
 
-        friend std::ostream& operator<<(std::ostream& os, const bool& value);
-        // Other member functions
-        Fraction reduce() const;
-        float toFloat() const;
+            // + overload
+            Fraction operator+(const Fraction& other);
+            Fraction operator+( float f);
+            friend Fraction operator+(float f, const Fraction& frac);
+            // - overload
+            Fraction operator-(const Fraction& other);
+            Fraction operator-(float f);
+            friend Fraction operator-(float f, const Fraction& frac);
+            // * overload
+            Fraction operator*(const Fraction& other);
+            Fraction operator*(float f);
+            friend Fraction operator*(float f, const Fraction& frac);
+            // / overload
+            Fraction operator/(const Fraction& other);
+            Fraction operator/(float f);
+            friend Fraction operator/(float f, const Fraction& frac);
+            // == overload
+            bool operator==(Fraction other);
+            bool operator==(float f);
+            friend bool operator==(float f, const Fraction& frac);
+            // != overload
+            bool operator!=(const Fraction& other);
+            bool operator!=(float f);
+            friend bool operator!=(float f, const Fraction& frac);
+            // > overload
+            bool operator>(const Fraction& other);
+            bool operator>(float f);
+            friend bool operator>(float f, const Fraction& frac);
+            // < overload
+            bool operator<(const Fraction& other);
+            bool operator<(float f);
+            friend bool operator<(float f, const Fraction& frac);
+            // >= overload
+            bool operator>=(const Fraction& other);
+            bool operator>=(float f);
+            friend bool operator>=(float f, const Fraction& frac);
+            // <= overload
+            bool operator<=(const Fraction& other);
+            bool operator<=(float f);
+            friend bool operator<=(float f, const Fraction& frac);
+            //prefix and postfix for ++ and --
+            Fraction operator++();
+            Fraction operator++(int);
+            Fraction operator--();
+            Fraction operator--(int);
+            //overload =
+            Fraction& operator=(const Fraction& other);
+            Fraction& operator=(float f);
+            friend std::ostream& operator<<(std::ostream& os, const ariel::Fraction& frac);
+            friend std::istream& operator>>(std::istream& is, const ariel::Fraction& frac);
     };
-
-    // Constructor with parameters
-    Fraction::Fraction(int n, int d) {
-        if (d == 0) {
-            std::cerr << "Error: denominator cannot be zero" << std::endl;
-            numerator = 0;
-            denominator = 1;
-        } else if (d < 0) {
-            numerator = -n;
-            denominator = -d;
-        } else {
-            numerator = n;
-            denominator = d;
-        }
-    }
 }
 
