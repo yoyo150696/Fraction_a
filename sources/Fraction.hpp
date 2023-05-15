@@ -18,8 +18,8 @@ namespace ariel
             Fraction(int n, int d);
             Fraction(float fnum);
             ~Fraction();
-            Fraction(Fraction&& other) noexcept;
-            Fraction& operator=(Fraction&& other) noexcept;
+            Fraction(Fraction& other);
+            Fraction& operator=(Fraction& other);
 
             // Operator overloading
 
